@@ -1,0 +1,58 @@
+{
+  "name": "@tadashi/common",
+  "version": "1.0.0",
+  "description": "Common functions",
+  "type": "module",
+  "main": "./src/common.js",
+  "browser": "./src/common.js",
+  "exports": {
+    ".": {
+      "browser": "./src/common.js",
+      "import": "./src/common.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "pretest": "xo",
+    "test": "c8 --reporter=text --reporter=lcov ava"
+  },
+  "keywords": [
+    "common",
+    "functions",
+    "helper"
+  ],
+  "author": "Thiago Lagden",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.16"
+  },
+  "devDependencies": {
+    "ava": "4.2.0",
+    "c8": "7.11.2",
+    "xo": "0.48.0"
+  },
+  "xo": {
+    "envs": [
+      "node"
+    ],
+    "ignore": [
+      "bin/**/*.*"
+    ],
+    "semicolon": false,
+    "rules": {
+      "padding-line-between-statements": 0,
+      "unicorn/prevent-abbreviations": 0,
+      "unicorn/no-array-reduce": 0,
+      "unicorn/prefer-object-from-entries": 0,
+      "no-new-func": 0,
+      "no-template-curly-in-string": 0,
+      "capitalized-comments": 0,
+      "camelcase": 0
+    }
+  }
+}
