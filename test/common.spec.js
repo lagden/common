@@ -99,6 +99,11 @@ test('parseBoolean', t => {
 	t.is(lib.parseBoolean('foo', false), 'foo')
 })
 
+test('parses', t => {
+	t.is(typeof lib.parses('number'), 'function')
+	t.is(lib.parses('invalid'), undefined)
+})
+
 test('noop', t => {
 	lib.noop()
 	t.pass('noop')

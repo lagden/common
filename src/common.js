@@ -51,7 +51,7 @@ export function fullURL(endpoint, data, useParams = true) {
 }
 
 /**
- * Helper - Clona um objeto evitando referência
+ * Clona um objeto evitando referência
  * @param {object} obj - Objeto que será clonado
  * @return {object} Retorna um novo objeto
  */
@@ -63,7 +63,7 @@ export function copyObject(obj) {
 }
 
 /**
- * Helper converte um valor para número
+ * Converte o valor para número
  * @param {*} v - Valor que será convertido para número
  * @return {(number|any)} Se sucesso retorna o número
  */
@@ -80,7 +80,7 @@ export function parseNumber(v) {
 }
 
 /**
- * Helper converte um valor para boolean
+ * Converte o valor para boolean
  * @param {*} v - Valor que será convertido para boolean
  * @param {boolean} force - Força a conversão
  * @return {(boolean|any)} Se sucesso retorna o boolean
@@ -98,7 +98,20 @@ export function parseBoolean(v, force = true) {
 }
 
 /**
- * Helper para evitar problema com eslint "unused"
+ * Seleciona um parser
+ * @param {string} parse
+ * @return {(function|undefined)} Se sucesso retorna a função
+ */
+export function parses(parse) {
+	const opts = {
+		number: parseNumber,
+		boolean: parseBoolean,
+	}
+	return opts?.[parse]
+}
+
+/**
+ * Evita problemas com eslint `unused`
  */
 export function noop() {}
 
@@ -117,7 +130,7 @@ export function checkArray(data, empty = true) {
 }
 
 /**
- * Helper para converter objeto em string
+ * Converte o objeto em string separado por `;`
  * @param {object}  data
  * @return {string} Retorna as propriedades
  */
@@ -130,7 +143,7 @@ export function obj2style(data) {
 }
 
 /**
- * Helper para gravar dado no localStorage/sessionStorage
+ * Define o dado no localStorage/sessionStorage
  * @param {string} k
  * @param {string} value
  * @param {string} type
@@ -142,7 +155,7 @@ export function setStorage(k, value, type = 'localStorage') {
 }
 
 /**
- * Helper para pegar o dado gravado no localStorage/sessionStorage
+ * Pega o dado definido no localStorage/sessionStorage
  * @param {string}  k
  * @param {string} type
  * @return {string|null} Retorna o dado armazenado ou nulo
@@ -152,7 +165,7 @@ export function getStorage(k, type = 'localStorage') {
 }
 
 /**
- * Helper para remover dado do localStorage/sessionStorage
+ * Remove dado do localStorage/sessionStorage
  * @param {string} k
  * @param {string} type
  */
@@ -161,7 +174,7 @@ export function removeStorage(k, type = 'localStorage') {
 }
 
 /**
- * Convert uma collection em objeto
+ * Converte a coleção em objeto
  * @param {string} key        - Nome do campo que será a chave
  * @param {Array}  collection - Uma coleção de objetos
  * @return {object} Retorna um objeto
@@ -193,7 +206,7 @@ export function setCssVars(data) {
 }
 
 /**
- * Template
+ * Preenche o template definido
  * @param {string} templateString - String com placeholders
  * @param {object} templateVars   - Objeto
  * @return {string} Retorna uma string

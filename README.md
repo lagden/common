@@ -35,6 +35,100 @@ const isArray = checkArray([1, 2, 3])
 // => true
 ```
 
+## API
+
+### filterProps(props: object, reserved?: Array<string>): object
+
+Remove as propriedades reservadas do objeto
+
+
+### params(): URLSearchParams
+
+Ler a query string
+
+
+### qs(): object
+
+Transforma a query string em objeto
+
+
+### fullURL(endpoint: string, data?: object, useParams?: boolean): string
+
+Gera uma url com a qs + data-*
+
+
+### copyObject(obj: object): object
+
+Clona um objeto evitando referência
+
+
+### parseNumber(v: any): Type<number | any>
+
+Converte o valor para número
+
+
+### parseBoolean(v: any, force?: boolean): Type<boolean | any>
+
+Converte o valor para boolean
+
+
+### parses(parse: string): Type<function | void>
+
+Seleciona um parser
+
+
+### noop(): void
+
+Evita problemas com eslint `unused`
+
+
+### checkArray(data: any, empty?: boolean): boolean
+
+Verifica se a variável é um Array
+
+
+### obj2style(data: object): string
+
+Converte o objeto em string separado por `;`
+
+
+### setStorage(k: string, value: string, type?: string): void
+
+Define o dado no localStorage/sessionStorage
+
+
+### getStorage(k: string, type?: string): Type<string | void>
+
+Pega o dado definido no localStorage/sessionStorage
+
+
+### removeStorage(k: string, type?: string): void
+
+Remove dado do localStorage/sessionStorage
+
+
+### arr2obj(key: string, collection?: Array<object>): object
+
+Converte a coleção em objeto
+
+
+### setCssVars(data: object): void
+
+Define css vars no root
+
+
+### template(templateString: string, templateVars: object): string
+
+Preenche o template definido
+
+
+### uuid(removeDash?: boolean): string
+
+Gerador de id aleatório
+
+
+---
+
 
 ## License
 
