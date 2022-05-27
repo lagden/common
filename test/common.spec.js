@@ -174,3 +174,29 @@ test('uuid', t => {
 	lib.uuid()
 	t.pass('uuid')
 })
+
+test('findRecursive', t => {
+	const collection = [
+		{
+			foo: [
+				{
+					noop: [
+						{id: 1, name: 'a'},
+						{id: 2, name: 'b'},
+						{id: 3, name: 'c'},
+					],
+				},
+			],
+		}, {
+			bar: 'baz',
+		}, {
+			xxx: ['a', 'b', 'c'],
+		},
+	]
+	const a = lib.findRecursive(collection, 'id', 2)
+	const b = lib.findRecursive('test', 'id', 2)
+	const c = lib.findRecursive(collection.xxx, 'id', 2)
+	t.is(a.name, 'b')
+	t.is(b, undefined)
+	t.is(c, undefined)
+})
