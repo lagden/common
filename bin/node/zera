@@ -10,12 +10,11 @@ BIN_DIR="$(cd $DIR/.. && pwd)"
 usage() {
 	cat <<-EOF
 
-  Usage: $0 [-n|-yg] [-vh]
+  Usage: $0 [-n|-y] [-vh]
 
   Options:
     -n           Install packages via npm
     -y           Install packages via yarn
-    -g           Generate .yarnrc.yml
     -v           Verbose
     -h           Show usage
 
@@ -35,13 +34,12 @@ GEN=false
 
 unset ACTION
 
-while getopts 'nygvh' c
+while getopts 'nyvh' c
 do
 	# echo "Processing $c : OPTIND is $OPTIND"
 	case $c in
 		n) ACTION=npm ;;
 		y) ACTION=yarn ;;
-		g) GEN=true ;;
 		v) VERBOSE=true ;;
 		h) usage ;;
 		\?) usage ;;
@@ -64,10 +62,10 @@ rm -rf \
 	"${CURR_FOLDER}/.pnp.*"
 
 if [ "${ACTION}" = "yarn" ]; then
+	echo "" > "${CURR_FOLDER}/.yarnrc.yml"
+	yarn set version berry
 	yarn set version stable
-	if $GEN; then
-		echo "nodeLinker: node-modules" > "${CURR_FOLDER}/.yarnrc.yml"
-	fi
+	echo "nodeLinker: node-modules" >> "${CURR_FOLDER}/.yarnrc.yml"
 fi
 
 $ACTION install

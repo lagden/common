@@ -14,11 +14,12 @@ export function filterProps(props, reserved) {
 
 /**
  * Ler a query string
+ * @param {string} url - URL String
  * @return {object} Retorna um objeto URLSearchParams
  */
-export function params() {
-	const url = new URL(globalThis.location)
-	const _params = new URLSearchParams(url.search)
+export function params(url) {
+	const _url = new URL(url ?? globalThis.location.href)
+	const _params = new URLSearchParams(_url.search)
 	return _params
 }
 
@@ -36,8 +37,9 @@ export function qs() {
 
 /**
  * Gera uma url com a qs + data-*
- * @param {string} endpoint - Endereço de disparo
- * @param {object} data     - Objeto
+ * @param {string} endpoint           - Endereço de disparo
+ * @param {object} data               - data-*
+ * @param {boolean} [useParams=false] - querystring
  * @return {string} Retorna uma URL
  */
 export function fullURL(endpoint, data, useParams = true) {

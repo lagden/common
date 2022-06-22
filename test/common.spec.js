@@ -16,7 +16,7 @@ function storage() {
 }
 
 test.before(() => {
-	globalThis.location = 'http://127.0.0.1/?test=1'
+	globalThis.location = new URL('http://127.0.0.1/?test=1')
 	globalThis.structuredClone = obj => JSON.parse(JSON.stringify(obj))
 	globalThis.localStorage = storage()
 	globalThis.sessionStorage = storage()
