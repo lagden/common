@@ -14,7 +14,7 @@ export function filterProps(props, reserved) {
 
 /**
  * Ler a query string
- * @param {string|undefined} url - URL String
+ * @param {string} [url=undefined] - URL String
  * @return {object} Retorna um objeto URLSearchParams
  */
 export function params(url) {
