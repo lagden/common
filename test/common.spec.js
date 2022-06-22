@@ -69,14 +69,20 @@ test('fullURL', t => {
 })
 
 test('copyObject', t => {
+	const obj = {a: 1, b: 2, c: undefined}
+	const data = lib.copyObject(obj)
+	t.not(data, obj)
+})
+
+test('clone', t => {
 	const obj = {a: 1, b: 2, c: 3}
 	let data
 
-	data = lib.copyObject(obj)
+	data = lib.clone(obj)
 	t.not(data, obj)
 
 	globalThis.structuredClone = undefined
-	data = lib.copyObject(obj)
+	data = lib.clone(obj)
 	t.not(data, obj)
 })
 

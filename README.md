@@ -42,9 +42,9 @@ const isArray = checkArray([1, 2, 3])
 Remove as propriedades reservadas do objeto
 
 
-### params(): URLSearchParams
+### params(url?: string): URLSearchParams
 
-Ler a query string
+Ler a query string de uma url
 
 
 ### qs(): object
@@ -59,7 +59,12 @@ Gera uma url com a qs + data-*
 
 ### copyObject(obj: object): object
 
-Clona um objeto evitando referência
+Clona um objeto evitando referência via JSON
+
+
+### clone(obj: object): object
+
+Clona um objeto evitando referência via structuredClone
 
 
 ### parseNumber(v: any): Type<number | any>

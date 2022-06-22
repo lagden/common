@@ -14,7 +14,7 @@ export function filterProps(props, reserved) {
 
 /**
  * Ler a query string
- * @param {string} url - URL String
+ * @param {string|undefined} url - URL String
  * @return {object} Retorna um objeto URLSearchParams
  */
 export function params(url) {
@@ -53,11 +53,20 @@ export function fullURL(endpoint, data, useParams = true) {
 }
 
 /**
- * Clona um objeto evitando referência
+ * Clona um objeto evitando referência - JSON
  * @param {object} obj - Objeto que será clonado
  * @return {object} Retorna um novo objeto
  */
 export function copyObject(obj) {
+	return JSON.parse(JSON.stringify(obj))
+}
+
+/**
+ * Clona um objeto evitando referência - Ponyfill
+ * @param {object} obj - Objeto que será clonado
+ * @return {object} Retorna um novo objeto
+ */
+export function clone(obj) {
 	if (typeof globalThis?.structuredClone === 'function') {
 		return globalThis.structuredClone(obj)
 	}
