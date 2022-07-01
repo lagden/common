@@ -15,6 +15,20 @@ function storage() {
 	}
 }
 
+class FormData {
+	constructor() {
+		this.data = new Set()
+	}
+
+	append(k, v) {
+		this.data.add([k, v])
+	}
+
+	entries() {
+		return [...this.data]
+	}
+}
+
 test.before(() => {
 	globalThis.location = new URL('http://127.0.0.1/?test=1')
 	globalThis.structuredClone = obj => JSON.parse(JSON.stringify(obj))
@@ -205,4 +219,13 @@ test('findRecursive', t => {
 	t.is(a.name, 'b')
 	t.is(b, undefined)
 	t.is(c, undefined)
+})
+
+test('form2qs', t => {
+	const formData = new FormData()
+	formData.append('foo', 1)
+	formData.append('foo', 2)
+	formData.append('bar', 3)
+	const qs = lib.form2qs(formData)
+	t.is(qs, 'foo=1&foo=2&bar=3')
 })
