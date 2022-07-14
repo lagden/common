@@ -229,3 +229,9 @@ test('form2qs', t => {
 	const qs = lib.form2qs(formData)
 	t.is(qs, 'foo=1&foo=2&bar=3')
 })
+
+test('removeLink', t => {
+	const html = 'Clique <a rel="noopenner" target="_blank" href="https://buscacepinter.correios.com.br/app/endereco/index.php">aqui</a>'
+	const v = lib.removeLink(html)
+	t.is(v, 'Clique aqui')
+})

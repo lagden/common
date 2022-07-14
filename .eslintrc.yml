@@ -2,7 +2,7 @@ root: true
 env:
   es2022: true
   node: true
-parser: '@babel/eslint-parser'
+# parser: '@babel/eslint-parser'
 parserOptions:
   ecmaVersion: 13
   sourceType: module

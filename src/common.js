@@ -124,7 +124,7 @@ export function parses(parse) {
 /**
  * Evita problemas com eslint `unused`
  */
-export function noop() {}
+export function noop(..._args) {}
 
 /**
  * Verifica se a variável é um Array
@@ -275,4 +275,14 @@ export function form2qs(formData) {
 		searchParams.append(k, v)
 	}
 	return searchParams.toString()
+}
+
+/**
+ * Remove a tag `<a>` da string
+ * @param {string} value - instância do FormData
+ * @return {string} Retorna a string sem link
+ */
+export function removeLink(value) {
+	const regex = /<a (.+?)>(.+?)?<\/a>/gm
+	return value.replaceAll(regex, '$2')
 }
