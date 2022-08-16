@@ -132,6 +132,26 @@ Preenche o template definido
 Gerador de id aleatório
 
 
+### findRecursive(collection: Array<object>, key: string, value: string|number): object
+
+Encontra um objeto no array
+
+
+### form2qs(data: FormData): string
+
+Tranforma o formulário em query-string
+
+
+### removeLink(data: string): string
+
+Remove a tag `<a>` da string
+
+
+### debounce(callback: function, wait: number): function
+
+Atrasa a função dada até que o tempo de espera declarado em milissegundos tenha passado desde a última vez que esta função de foi chamada.
+
+
 ---
 
 
