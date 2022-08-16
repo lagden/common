@@ -62,7 +62,7 @@ try {
 		.on('error', error => {
 			_error(error.message)
 		})
-		.end(JSON.stringify(packageJson, undefined, '  '))
+		.end(`${JSON.stringify(packageJson, undefined, '  ')}\n`)
 } catch (error) {
 	_error(error.message)
 }

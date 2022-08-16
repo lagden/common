@@ -1,4 +1,5 @@
 import test from 'ava'
+import * as sinon from 'sinon'
 import * as lib from '../src/common.js'
 
 function storage() {
@@ -234,4 +235,19 @@ test('removeLink', t => {
 	const html = 'Clique <a rel="noopenner" target="_blank" href="https://buscacepinter.correios.com.br/app/endereco/index.php">aqui</a>'
 	const v = lib.removeLink(html)
 	t.is(v, 'Clique aqui')
+})
+
+test('debounce', t => {
+	const clock = sinon.useFakeTimers()
+	const stub = sinon.stub()
+	const fn = lib.debounce(stub, 1000)
+
+	for (let i = 0; i < 10; i++) {
+		clock.tick(500)
+		fn()
+	}
+	t.false(stub.calledOnce)
+	clock.tick(1000)
+	clock.restore()
+	t.true(stub.calledOnce)
 })
