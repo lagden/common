@@ -152,6 +152,16 @@ Remove a tag `<a>` da string
 Atrasa a função dada até que o tempo de espera declarado em milissegundos tenha passado desde a última vez que esta função de foi chamada.
 
 
+### dirname(value?: string): object
+
+Retorna um objeto com o caminho e a url de um arquivo.
+
+
+### getUrl(value?: string): string
+
+Retorna a url de um arquivo.
+
+
 ---
 
 

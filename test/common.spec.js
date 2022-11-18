@@ -251,3 +251,13 @@ test('debounce', t => {
 	clock.restore()
 	t.true(stub.calledOnce)
 })
+
+test('dirname', t => {
+	const {path} = lib.dirname('https://eu.com.vc/xxx/lib.js')
+	t.is(path, '/xxx')
+})
+
+test('getUrl', t => {
+	const url = lib.getUrl('https://eu.com.vc/xxx/lib.js')
+	t.is(url, 'https://eu.com.vc/xxx')
+})

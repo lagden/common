@@ -302,3 +302,32 @@ export function debounce(callback, wait = 100) {
 		}, wait)
 	}
 }
+
+/**
+ * Dirname da URL
+ * @param {string} value - url
+ * @return {object} Retorna um objeto
+ */
+export function dirname(value = import.meta.url) {
+	const _url = new URL(value)
+	const _pathname = _url.pathname.split('/')
+	const _href = _url.href.split('/')
+	_pathname.pop()
+	_href.pop()
+	const path = _pathname.join('/')
+	const url = _href.join('/')
+	return {
+		path,
+		url,
+	}
+}
+
+/**
+ * Path da URL sem o nome
+ * @param {string} value - url
+ * @return {string} Path da URL
+ */
+export function getUrl(value) {
+	const {url} = dirname(value)
+	return url
+}
