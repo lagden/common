@@ -1,4 +1,5 @@
 import test from 'ava'
+import {JSDOM} from 'jsdom'
 import * as sinon from 'sinon'
 import * as lib from '../src/common.js'
 
@@ -54,6 +55,11 @@ test.before(() => {
 			return 'ffcc00-ffcc00'
 		},
 	}
+
+	const dom = new JSDOM('<div id=xxx data-one=foo data-two=bar />')
+	globalThis.document = dom.window.document
+	globalThis.HTMLElement = dom.window.HTMLElement
+	// console.log(dom)
 })
 
 test('filterProps', t => {
@@ -260,4 +266,25 @@ test('dirname', t => {
 test('getUrl', t => {
 	const url = lib.getUrl('https://eu.com.vc/xxx/lib.js')
 	t.is(url, 'https://eu.com.vc/xxx')
+})
+
+test('kebabify', t => {
+	const v1 = lib.kebabify('AbcDefG')
+	const v2 = lib.kebabify('abcDefG')
+	const v3 = lib.kebabify('-abc-DefG')
+	const v4 = lib.kebabify('_abc-De_f_G_')
+	t.is(v1, 'abc-def-g')
+	t.is(v2, 'abc-def-g')
+	t.is(v3, 'abc-def-g')
+	t.is(v4, 'abc-def-g')
+})
+
+test('getTargetId', t => {
+	const id = lib.getTargetId('xxx')
+	t.is(id, 'xxx')
+})
+
+test('data', t => {
+	const data = lib.getData('xxx')
+	t.deepEqual(data, {one: 'foo', two: 'bar'})
 })

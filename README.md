@@ -15,18 +15,22 @@
 [xo-img]:          https://img.shields.io/badge/code_style-XO-5ed9c7.svg
 [xo]:              https://github.com/sindresorhus/xo
 
------
+
+---
+
 
 Common functions
 
-## Install
+## Instalação
 
 ```
 $ npm i -S @tadashi/common
 ```
 
 
-## Usage
+## Uso
+
+Exemplo um:
 
 ```js
 import {checkArray} from '@tadashi/common'
@@ -35,131 +39,184 @@ const isArray = checkArray([1, 2, 3])
 // => true
 ```
 
+Exemplo dois:
+
+```js
+import {checkArray} from '@tadashi/common/src/lib/check-array.js'
+
+const isArray = checkArray([1, 2, 3])
+// => true
+```
+
+Exemplo três:
+
+```js
+import {checkArray} from 'https://unpkg.com/@tadashi/common@{version}/src/lib/check-array.js'
+
+const isArray = checkArray([1, 2, 3])
+// => true
+```
+
+
 ## API
 
-### filterProps(props: object, reserved?: Array<string>): object
+### DOM
 
-Remove as propriedades reservadas do objeto
+#### getData(id: string): object
 
-
-### params(url?: string): URLSearchParams
-
-Ler a query string de uma url
+Converte data-* atributos para objeto
 
 
-### qs(): object
+#### getTargetId(id?: string): string
 
-Transforma a query string em objeto
+Pega o id do elemento
 
-
-### fullURL(endpoint: string, data?: object, useParams?: boolean): string
-
-Gera uma url com a qs + data-*
-
-
-### copyObject(obj: object): object
-
-Clona um objeto evitando referência via JSON
-
-
-### clone(obj: object): object
-
-Clona um objeto evitando referência via structuredClone
+Exemplo:
+```html
+<script
+  type="module"
+  id="id_do_script"
+  src="./meu-script.js?id=id_do_script"
+></script>
+```
 
 
-### parseNumber(v: any): Type<number | any>
+### Parse
 
-Converte o valor para número
+#### parseNumber(v: any): Type<number | any>
 
-
-### parseBoolean(v: any, force?: boolean): Type<boolean | any>
-
-Converte o valor para boolean
+Converte o valor para número.
 
 
-### parses(parse: string): Type<function | void>
+#### parseBoolean(v: any, force?: boolean): Type<boolean | any>
 
-Seleciona um parser
-
-
-### noop(): void
-
-Evita problemas com eslint `unused`
+Converte o valor para boolean.
 
 
-### checkArray(data: any, empty?: boolean): boolean
+#### parses(parse: string): Type<function | void>
 
-Verifica se a variável é um Array
-
-
-### obj2style(data: object): string
-
-Converte o objeto em string separado por `;`
+Selecione um parser
 
 
-### setStorage(k: string, value: string, type?: string): void
+### Storage
 
-Define o dado no localStorage/sessionStorage
-
-
-### getStorage(k: string, type?: string): Type<string | void>
+#### getStorage(k: string, type?: string): Type<string | void>
 
 Pega o dado definido no localStorage/sessionStorage
 
 
-### removeStorage(k: string, type?: string): void
+#### removeStorage(k: string, type?: string): void
 
 Remove dado do localStorage/sessionStorage
 
 
-### arr2obj(key: string, collection?: Array<object>): object
+#### setStorage(k: string, value: string, type?: string): void
 
-Converte a coleção em objeto
-
-
-### setCssVars(data: object): void
-
-Define css vars no root
+Define o dado no localStorage/sessionStorage
 
 
-### template(templateString: string, templateVars: object): string
+### URL
 
-Preenche o template definido
-
-
-### uuid(removeDash?: boolean): string
-
-Gerador de id aleatório
-
-
-### findRecursive(collection: Array<object>, key: string, value: string|number): object
-
-Encontra um objeto no array
-
-
-### form2qs(data: FormData): string
-
-Tranforma o formulário em query-string
-
-
-### removeLink(data: string): string
-
-Remove a tag `<a>` da string
-
-
-### debounce(callback: function, wait: number): function
-
-Atrasa a função dada até que o tempo de espera declarado em milissegundos tenha passado desde a última vez que esta função de foi chamada.
-
-
-### dirname(value?: string): object
+#### dirname(value?: string): object
 
 Retorna um objeto com o caminho e a url de um arquivo.
 
 
-### getUrl(value?: string): string
+#### fullURL(endpoint: string, data?: object, useParams?: boolean): string
+
+Gera uma url com a qs + data-*
+
+
+#### getURL(value?: string): string
 
 Retorna a url de um arquivo.
+
+
+#### params(url?: string): URLSearchParams
+
+Ler a query string de uma url
+
+
+#### qs(): object
+
+Transforma a query string em objeto
+
+
+### Outros métodos
+
+#### arr2obj(key: string, collection?: Array<object>): object
+
+Converte a coleção em objeto
+
+
+#### checkArray(data: any, empty?: boolean): boolean
+
+Verifica se a variável é um Array
+
+
+#### clone(obj: object): object
+
+Clona um objeto evitando referência via structuredClone
+
+
+#### copyObject(obj: object): object
+
+Clona um objeto evitando referência via JSON
+
+
+#### debounce(callback: function, wait: number): function
+
+Atrasa a função dada até que o tempo de espera declarado em milissegundos tenha passado desde a última vez que esta função de foi chamada.
+
+
+#### filterProps(props: object, reserved?: Array<string>): object
+
+Remove as propriedades reservadas do objeto
+
+
+#### findRecursive(collection: Array<object>, key: string, value: string|number): object
+
+Encontra um objeto no array
+
+
+#### form2qs(data: FormData): string
+
+Tranforma o formulário em query-string
+
+
+#### kebabify(value?: string): string
+
+Converte camel/snake case para kebab case.
+
+
+#### noop(): void
+
+Evita problemas com eslint `unused`
+
+
+#### obj2style(data: object): string
+
+Converte o objeto em string separado por `;`
+
+
+#### removeLink(data: string): string
+
+Remove a tag `<a>` da string
+
+
+#### setCssVars(data: object): void
+
+Define css vars no root
+
+
+#### template(templateString: string, templateVars: object): string
+
+Preenche o template definido
+
+
+#### uuid(removeDash?: boolean): string
+
+Gerador de id aleatório
 
 
 ---
