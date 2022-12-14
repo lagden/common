@@ -83,7 +83,7 @@ test('qs', t => {
 test('fullURL', t => {
 	let data
 	data = lib.fullURL('http://127.0.0.1/run/', {foo: 'bar'})
-	t.is(data, 'http://127.0.0.1/run/?test=1&foo=bar')
+	t.is(data, 'http://127.0.0.1/run/?foo=bar&test=1')
 
 	data = lib.fullURL('http://127.0.0.1/run/', undefined, false)
 	t.is(data, 'http://127.0.0.1/run/')
