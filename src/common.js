@@ -1,5 +1,5 @@
 export {getData} from './lib/dom/data.js'
-export {getTargetId} from './lib/dom/target.js'
+export {getProp} from './lib/dom/prop.js'
 //
 export {parseBoolean} from './lib/parse/boolean.js'
 export {parseNumber} from './lib/parse/number.js'

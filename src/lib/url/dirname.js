@@ -3,7 +3,7 @@
  * @param {string} value - url
  * @return {object} Retorna um objeto
  */
-export function dirname(value = import.meta.url) {
+export function dirname(value) {
 	const _url = new URL(value)
 	const _pathname = _url.pathname.split('/')
 	const _href = _url.href.split('/')

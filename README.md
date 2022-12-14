@@ -67,18 +67,9 @@ const isArray = checkArray([1, 2, 3])
 Converte data-* atributos para objeto
 
 
-#### getTargetId(id?: string): string
+#### getProp(url: string, prop?: string): string
 
-Pega o id do elemento
-
-Exemplo:
-```html
-<script
-  type="module"
-  id="id_do_script"
-  src="./meu-script.js?id=id_do_script"
-></script>
-```
+Pega a propriedade da query string
 
 
 ### Parse

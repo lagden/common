@@ -234,7 +234,9 @@ test('form2qs', t => {
 	formData.append('foo', 2)
 	formData.append('bar', 3)
 	const qs = lib.form2qs(formData)
+	const qs2 = lib.form2qs(formData, false)
 	t.is(qs, 'foo=1&foo=2&bar=3')
+	t.true(qs2 instanceof globalThis.URLSearchParams)
 })
 
 test('removeLink', t => {
@@ -279,12 +281,12 @@ test('kebabify', t => {
 	t.is(v4, 'abc-def-g')
 })
 
-test('getTargetId', t => {
-	const id = lib.getTargetId('xxx')
+test('getProp', t => {
+	const id = lib.getProp('https://eu.com.vc/lib.js?id=xxx', 'id')
 	t.is(id, 'xxx')
 })
 
-test('data', t => {
+test('getData', t => {
 	const data = lib.getData('xxx')
 	t.deepEqual(data, {one: 'foo', two: 'bar'})
 })
