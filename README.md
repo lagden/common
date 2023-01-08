@@ -200,14 +200,16 @@ Remove a tag `<a>` da string
 Define css vars no root
 
 
-#### template(templateString: string, templateVars: object): string
+#### template(templateString: string, templateVars: object, undefinedReplacement?: string): string
 
 Preenche o template definido
 
 
-#### uuid(removeDash?: boolean): string
+#### rnd(removeDash?: boolean): string
 
-Gerador de id aleatório
+> Alias `uuid`
+
+Gerador de ID aleatório
 
 
 ---

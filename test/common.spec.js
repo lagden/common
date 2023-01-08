@@ -188,14 +188,14 @@ test('setCssVars', t => {
 })
 
 test('template', t => {
-	const templateString = 'Me chamo ${this.name}'
-	const templateVars = {name: 'Teste'}
-	const result = lib.template(templateString, templateVars)
-	t.is(result, 'Me chamo Teste')
+	const templateString = 'My name is ${"user.full-name"} and I like to eat ${"food"} with water'
+	const templateVariables = {'user.full-name': 'Teste'}
+	const result = lib.template(templateString, templateVariables, '__________')
+	t.is(result, 'My name is Teste and I like to eat __________ with water')
 })
 
-test('uuid', t => {
-	lib.uuid()
+test('uuid / rnd', t => {
+	lib.rnd()
 	lib.uuid(false)
 	globalThis.crypto = undefined
 	lib.uuid()

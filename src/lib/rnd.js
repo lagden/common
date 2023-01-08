@@ -3,7 +3,7 @@
  * @param {boolean} [removeDash=true] - remove o dash ("-") do uuid
  * @return {string} Retorna o uuid ou hexadecimal aleatório
  */
-export function uuid(removeDash = true) {
+export function rnd(removeDash = true) {
 	if (globalThis?.crypto?.randomUUID) {
 		const _uuid = globalThis.crypto.randomUUID()
 		return removeDash ? _uuid.replace(/-/g, '') : _uuid
