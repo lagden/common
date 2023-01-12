@@ -87,6 +87,9 @@ test('fullURL', t => {
 
 	data = lib.fullURL('http://127.0.0.1/run/', undefined, false)
 	t.is(data, 'http://127.0.0.1/run/')
+
+	data = lib.fullURL('http://127.0.0.1/run/', {foo: 'foo', bar: 'bar'}, true, ['foo'])
+	t.is(data, 'http://127.0.0.1/run/?bar=bar&test=1')
 })
 
 test('copyObject', t => {
@@ -258,11 +261,6 @@ test('debounce', t => {
 	clock.tick(1000)
 	clock.restore()
 	t.true(stub.calledOnce)
-})
-
-test('dirname', t => {
-	const {path} = lib.dirname('https://eu.com.vc/xxx/lib.js')
-	t.is(path, '/xxx')
 })
 
 test('getUrl', t => {

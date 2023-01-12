@@ -9,7 +9,6 @@ export {getStorage} from './lib/storage/get.js'
 export {removeStorage} from './lib/storage/remove.js'
 export {setStorage} from './lib/storage/set.js'
 //
-export {dirname} from './lib/url/dirname.js'
 export {fullURL, fullURL as fullUrl} from './lib/url/full-url.js'
 export {getURL, getURL as getUrl} from './lib/url/get-url.js'
 export {params} from './lib/url/params.js'
