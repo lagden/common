@@ -62,151 +62,150 @@ const isArray = checkArray([1, 2, 3])
 
 ### DOM
 
-#### getData(id: string): object
+> `getData(id: string): object`
 
 Converte data-* atributos para objeto
 
 
-#### getProp(url: string, prop?: string): string
+> `getProp(url: string, prop?: string): string`
 
 Pega a propriedade da query string
 
 
 ### Parse
 
-#### parseNumber(v: any): Type<number | any>
+> `parseNumber(v: any): Type<number | any>`
 
 Converte o valor para número.
 
 
-#### parseBoolean(v: any, force?: boolean): Type<boolean | any>
+> `parseBoolean(v: any, force?: boolean): Type<boolean | any>`
 
 Converte o valor para boolean.
 
 
-#### parses(parse: string): Type<function | void>
+> `parses(parse: string): Type<function | void>`
 
 Selecione um parser
 
 
 ### Storage
 
-#### getStorage(k: string, type?: string): Type<string | void>
+> `getStorage(k: string, type?: string): Type<string | void>`
 
-Pega o dado definido no localStorage/sessionStorage
+Retorna o dado definido no localStorage/sessionStorage
 
 
-#### removeStorage(k: string, type?: string): void
+> `removeStorage(k: string, type?: string): void`
 
 Remove dado do localStorage/sessionStorage
 
 
-#### setStorage(k: string, value: string, type?: string): void
+> `setStorage(k: string, value: string, type?: string): void`
 
 Define o dado no localStorage/sessionStorage
 
 
 ### URL
 
-#### dirname(value?: string): object
-
-Retorna um objeto com o caminho e a url de um arquivo.
-
-
-#### fullURL(endpoint: string, data?: object, useParams?: boolean): string
+> `fullURL(endpoint: string, data?: object, useParams?: boolean): string`
 
 Gera uma url com a qs + data-*
 
 
-#### getURL(value?: string): string
+> `getURL(value?: string): string`
 
 Retorna a url de um arquivo.
 
 
-#### params(url?: string): URLSearchParams
+> `params(url?: string): URLSearchParams`
 
 Ler a query string de uma url
 
 
-#### qs(): object
+> `qs(url?: string): object`
 
 Transforma a query string em objeto
 
 
 ### Outros métodos
 
-#### arr2obj(key: string, collection?: Array<object>): object
+> `arr2obj(key: string, collection?: Array<object>): object`
 
 Converte a coleção em objeto
 
 
-#### checkArray(data: any, empty?: boolean): boolean
+> `checkArray(data: any, empty?: boolean): boolean`
 
 Verifica se a variável é um Array
 
 
-#### clone(obj: object): object
+> `clone(obj: object): object`
 
 Clona um objeto evitando referência via structuredClone
 
 
-#### copyObject(obj: object): object
+> `copyObject(obj: object): object`
 
 Clona um objeto evitando referência via JSON
 
 
-#### debounce(callback: function, wait: number): function
+> `createElement(element: string, props?: object): HTMLElement`
+
+Cria um elemento para ser adicionado no DOM
+
+
+> `debounce(callback: function, wait: number): function`
 
 Atrasa a função dada até que o tempo de espera declarado em milissegundos tenha passado desde a última vez que esta função de foi chamada.
 
 
-#### filterProps(props: object, reserved?: Array<string>): object
+> `filterProps(props: object, reserved?: Array<string>): object`
 
 Remove as propriedades reservadas do objeto
 
 
-#### findRecursive(collection: Array<object>, key: string, value: string|number): object
+> `findRecursive(collection: Array<object>, key: string, value: string|`number): object
 
 Encontra um objeto no array
 
 
-#### form2qs(data: FormData): string
+> `form2qs(data: FormData): string`
 
 Tranforma o formulário em query-string
 
 
-#### kebabify(value?: string): string
+> `kebabify(value?: string): string`
 
 Converte camel/snake case para kebab case.
 
 
-#### noop(): void
+> `noop(): void`
 
 Evita problemas com eslint `unused`
 
 
-#### obj2style(data: object): string
+> `obj2style(data: object): string`
 
 Converte o objeto em string separado por `;`
 
 
-#### removeLink(data: string): string
+> `removeLink(data: string): string`
 
 Remove a tag `<a>` da string
 
 
-#### setCssVars(data: object): void
+> `setCssVars(data: object): void`
 
 Define css vars no root
 
 
-#### template(templateString: string, templateVars: object, undefinedReplacement?: string): string
+> `template(templateString: string, templateVars: object, undefinedReplacement?: string): string`
 
 Preenche o template definido
 
 
-#### rnd(removeDash?: boolean): string
-
+> `rnd(removeDash?: boolean): string`  
 > Alias `uuid`
 
 Gerador de ID aleatório

@@ -1,5 +1,3 @@
-import {checkArray} from './check-array.js'
-
 /**
  * Converte a coleção em objeto
  * @param {string} key        - Nome do campo que será a chave
@@ -7,7 +5,7 @@ import {checkArray} from './check-array.js'
  * @return {object} Retorna um objeto
  */
 export function arr2obj(key, collection = []) {
-	if (checkArray(collection) === false) {
+	if (Array.isArray(collection) === false) {
 		return collection
 	}
 

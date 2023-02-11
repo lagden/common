@@ -78,6 +78,9 @@ test('params', t => {
 test('qs', t => {
 	const data = lib.qs()
 	t.is(data.test, '1')
+
+	const data2 = lib.qs('http://127.0.0.1/run/?foo=bar&test=1')
+	t.is(data2.foo, 'bar')
 })
 
 test('fullURL', t => {
@@ -287,4 +290,15 @@ test('getProp', t => {
 test('getData', t => {
 	const data = lib.getData('xxx')
 	t.deepEqual(data, {one: 'foo', two: 'bar'})
+})
+
+test('createElement', t => {
+	const element = lib.createElement('div', {
+		dataset: {
+			test: 'test',
+		},
+		id: 'divTest',
+	})
+	t.is(element.dataset.test, 'test')
+	t.is(element.id, 'divTest')
 })
