@@ -14,6 +14,7 @@ usage() {
 
   Options:
     -m, --manager <manager>  Package manager: npm (default), yarn or pnpm
+    -s, --shame              Shamefully hoist (only pnpm)
     -h, --help               Show usage
 
 EOF
@@ -25,6 +26,9 @@ CURR_FOLDER="$(pwd)"
 
 unset ACTION
 ACTION=npm
+
+unset SHAME
+SHAME=""
 
 unset VERBOSE
 VERBOSE=false
@@ -39,6 +43,10 @@ for i in "$@"; do
 			;;
 		-m|--manager)
 			ACTION="${2}"
+			shift
+			;;
+		-s|--shame)
+			SHAME="--shamefully-hoist"
 			shift
 			;;
 		-*|--*)
@@ -72,8 +80,14 @@ if [ "${ACTION}" = "yarn" ]; then
 	echo "nodeLinker: node-modules" >> "${CURR_FOLDER}/.yarnrc.yml"
 fi
 
-# Install and audit packages
-$ACTION install
+# Install packages
+if [ "${ACTION}" = "pnpm" ]; then
+	$ACTION install $SHAME
+else
+	$ACTION install
+fi
+
+# Audit packages
 test $? -ne 0 && abort "${ACTION} failed" || ok "zerado..."
 test "${ACTION}" = "yarn" && yarn npm audit || $ACTION audit
 

@@ -1,5 +1,3 @@
-import {qs} from './qs.js'
-
 /**
  * Gera uma url com a qs + data-*
  * @param {string} url                     - Endereço de disparo
@@ -11,10 +9,13 @@ import {qs} from './qs.js'
 export function fullURL(url, data, useQueryString = true, ignoreProps = []) {
 	const _ignoreProps = new Set(ignoreProps)
 	const _url = new URL(url)
-	const _qs = useQueryString ? qs() : {}
+	const _qs = useQueryString ? new URL(globalThis.location.href).searchParams : new URLSearchParams()
 	const _data = data instanceof Object ? data : {}
-	const _merge = {..._data, ..._qs}
-	for (const [k, v] of Object.entries(_merge)) {
+	const _merge = new URLSearchParams([
+		...Object.entries(_data),
+		..._qs.entries(),
+	])
+	for (const [k, v] of _merge.entries()) {
 		if (_ignoreProps.has(k) === false) {
 			_url.searchParams.set(k, v)
 		}

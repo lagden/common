@@ -1,3 +1,4 @@
+import crypto from 'node:crypto'
 import test from 'ava'
 import {JSDOM} from 'jsdom'
 import * as sinon from 'sinon'
@@ -50,11 +51,7 @@ test.before(() => {
 		return lib.uuid()
 	}
 	globalThis.cancelAnimationFrame = lib.noop
-	globalThis.crypto = {
-		randomUUID() {
-			return 'ffcc00-ffcc00'
-		},
-	}
+	globalThis.crypto = crypto
 
 	const dom = new JSDOM('<div id=xxx data-one=foo data-two=bar />')
 	globalThis.document = dom.window.document
