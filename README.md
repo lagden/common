@@ -165,9 +165,14 @@ Atrasa a função dada até que o tempo de espera declarado em milissegundos ten
 Remove as propriedades reservadas do objeto
 
 
-> `findRecursive(collection: Array<object>, key: string, value: string|`number): object
+> `findRecursive(collection: Array<object>, key: string, value: string|number): object`
 
 Encontra um objeto no array
+
+
+> `flattenObject(obj: object, delim: string): string`
+
+Nivela o objeto em um único nível
 
 
 > `form2qs(data: FormData): string`
@@ -200,7 +205,7 @@ Remove a tag `<a>` da string
 Define css vars no root
 
 
-> `template(templateString: string, templateVars: object, undefinedReplacement?: string): string`
+> `template(templateString: string, templateVars: object, undefinedReplacement?: string, useFlat?: boolean): string`
 
 Preenche o template definido
 

@@ -193,7 +193,7 @@ test('setCssVars', t => {
 test('template', t => {
 	const templateString = 'My name is ${"user.fullname"} and I like to eat ${"food"} with water'
 	const templateVariables = {'user.fullname': 'Teste'}
-	const result = lib.template(templateString, templateVariables, '__________')
+	const result = lib.template(templateString, templateVariables, '__________', false)
 	t.is(result, 'My name is Teste and I like to eat __________ with water')
 })
 
