@@ -191,8 +191,19 @@ test('setCssVars', t => {
 })
 
 test('template', t => {
-	const templateString = 'My name is ${"user.full-name"} and I like to eat ${"food"} with water'
-	const templateVariables = {'user.full-name': 'Teste'}
+	const templateString = 'My name is ${"user.fullname"} and I like to eat ${"food"} with water'
+	const templateVariables = {'user.fullname': 'Teste'}
+	const result = lib.template(templateString, templateVariables, '__________')
+	t.is(result, 'My name is Teste and I like to eat __________ with water')
+})
+
+test('template obj', t => {
+	const templateString = 'My name is ${"user.fullname"} and I like to eat ${"food"} with water'
+	const templateVariables = {
+		user: {
+			fullname: 'Teste',
+		},
+	}
 	const result = lib.template(templateString, templateVariables, '__________')
 	t.is(result, 'My name is Teste and I like to eat __________ with water')
 })
@@ -298,4 +309,17 @@ test('createElement', t => {
 	})
 	t.is(element.dataset.test, 'test')
 	t.is(element.id, 'divTest')
+})
+
+test('flatter object', t => {
+	const flat = lib.flattenObject({
+		a: {
+			b: {
+				c: 'foo',
+			},
+			x: undefined,
+			d: 'bar',
+		},
+	})
+	t.deepEqual(flat, {'a.b.c': 'foo', 'a.x': undefined, 'a.d': 'bar'})
 })

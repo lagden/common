@@ -1,3 +1,4 @@
+import {flattenObject} from './flatten-object.js'
 /**
  * Preenche o template definido
  * @param {string} templateString - String com placeholders
@@ -7,5 +8,6 @@
  */
 export function template(templateString, templateVariables, undefinedReplacement = '') {
 	const _regex = /\${"([^"]*?)"}/gm
-	return templateString.replace(_regex, (_, g) => templateVariables?.[g] ?? undefinedReplacement)
+	const flat = flattenObject(templateVariables)
+	return templateString.replace(_regex, (_, g) => flat?.[g] ?? undefinedReplacement)
 }
