@@ -191,9 +191,20 @@ test('setCssVars', t => {
 })
 
 test('template', t => {
+	const templateString = 'My name is ${"user.fullname"}.'
+	const templateVariables = {'user.fullname': 'Teste'}
+	const result = lib.template(templateString, templateVariables)
+	t.is(result, 'My name is Teste.')
+})
+
+test('template options', t => {
 	const templateString = 'My name is ${"user.fullname"} and I like to eat ${"food"} with water'
 	const templateVariables = {'user.fullname': 'Teste'}
-	const result = lib.template(templateString, templateVariables, '__________', false)
+	const options = {
+		undefinedReplacement: '__________',
+		useFlat: false,
+	}
+	const result = lib.template(templateString, templateVariables, options)
 	t.is(result, 'My name is Teste and I like to eat __________ with water')
 })
 
@@ -204,8 +215,26 @@ test('template obj', t => {
 			fullname: 'Teste',
 		},
 	}
-	const result = lib.template(templateString, templateVariables, '__________')
+	const options = {
+		undefinedReplacement: '__________',
+	}
+	const result = lib.template(templateString, templateVariables, options)
 	t.is(result, 'My name is Teste and I like to eat __________ with water')
+})
+
+test('template regex', t => {
+	const templateString = 'My name is ${user.fullname} and I like to eat ${food} with water'
+	const templateVariables = {
+		food: 'pasta',
+		user: {
+			fullname: 'Teste',
+		},
+	}
+	const options = {
+		regex: /\${([^{}]*?)}/gm,
+	}
+	const result = lib.template(templateString, templateVariables, options)
+	t.is(result, 'My name is Teste and I like to eat pasta with water')
 })
 
 test('uuid / rnd', t => {

@@ -10,8 +10,8 @@ ok() {
 
 load_env() {
 	_DIR="$(pwd)"
-	ENVFILE_LOCAL="${2:-$_DIR}/.env/local.conf.sh"
-	ENVFILE_OPT="${2:-$_DIR}/.env/${1:-development}.conf.sh"
+	ENVFILE_LOCAL="${2:-$_DIR}/.conf/local.sh"
+	ENVFILE_OPT="${2:-$_DIR}/.conf/${1:-development}.sh"
 	USE_LOCAL_ENV=0
 
 	if test ! -e $ENVFILE_OPT; then
@@ -36,7 +36,7 @@ load_env() {
 gen_env() {
 	_DIR="$(cd $(dirname $0) && pwd)"
 	_BIN_DIR="$(cd $DIR/.. && pwd)"
-	GEN_ENV="${2:-$_BIN_DIR}/node/envs.js"
+	GEN_ENV="${2:-$_BIN_DIR}/node/env.js"
 
 	if test -z $1; then
 		abort "Missing output"

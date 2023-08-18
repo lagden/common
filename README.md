@@ -3,7 +3,6 @@
 [![NPM version][npm-img]][npm]
 [![Build Status][ci-img]][ci]
 [![Coverage Status][coveralls-img]][coveralls]
-[![XO code style][xo-img]][xo]
 
 
 [npm-img]:         https://img.shields.io/npm/v/@tadashi/common.svg
@@ -12,8 +11,6 @@
 [ci]:              https://github.com/lagden/common/actions/workflows/nodejs.yml
 [coveralls-img]:   https://coveralls.io/repos/github/lagden/common/badge.svg?branch=main
 [coveralls]:       https://coveralls.io/github/lagden/common?branch=main
-[xo-img]:          https://img.shields.io/badge/code_style-XO-5ed9c7.svg
-[xo]:              https://github.com/sindresorhus/xo
 
 
 ---
@@ -205,7 +202,7 @@ Remove a tag `<a>` da string
 Define css vars no root
 
 
-> `template(templateString: string, templateVars: object, undefinedReplacement?: string, useFlat?: boolean): string`
+> `template(templateString: string, templateVars: object, options?: object): string`
 
 Preenche o template definido
 
