@@ -29,5 +29,5 @@ export function template(templateString, templateVariables, options) {
 	 */
 	const replacementFunction = (_, g) => _ref?.[g] ?? undefinedReplacement
 
-	return templateString.replace(regex, replacementFunction)
+	return String(templateString ?? '').replace(regex, replacementFunction)
 }

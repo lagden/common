@@ -237,6 +237,20 @@ test('template regex', t => {
 	t.is(result, 'My name is Teste and I like to eat pasta with water')
 })
 
+test('template no data', t => {
+	const templateString = undefined
+	const templateVariables = {
+		user: {
+			fullname: 'Teste',
+		},
+	}
+	const options = {
+		regex: /\${([^{}]*?)}/gm,
+	}
+	const result = lib.template(templateString, templateVariables, options)
+	t.is(result, '')
+})
+
 test('uuid / rnd', t => {
 	lib.rnd()
 	lib.uuid(false)
