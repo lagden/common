@@ -1,6 +1,6 @@
 {
   "name": "@tadashi/common",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Common functions",
   "type": "module",
   "main": "./src/common.js",
