@@ -371,3 +371,8 @@ test('uniqueWords', t => {
 	const r = lib.uniqueWords('aaa bbb ccc ', 'aaa   xxx yyy')
 	t.is(r, 'aaa bbb ccc xxx yyy')
 })
+
+test('uniqueWords only string', t => {
+	const r = lib.uniqueWords(undefined, 'aaa   xxx yyy', [], {}, 123, true)
+	t.is(r, 'aaa xxx yyy')
+})

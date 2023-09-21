@@ -7,8 +7,10 @@
 export function uniqueWords(...args) {
 	const result = new Set()
 	for (const words of args) {
-		for (const word of String(words).trim().split(/\s+/)) {
-			result.add(word)
+		if (typeof words === 'string') {
+			for (const word of words.trim().split(/\s+/)) {
+				result.add(word)
+			}
 		}
 	}
 
