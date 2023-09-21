@@ -366,3 +366,8 @@ test('flatter object', t => {
 	})
 	t.deepEqual(flat, {'a.b.c': 'foo', 'a.x': undefined, 'a.d': 'bar'})
 })
+
+test('uniqueWords', t => {
+	const r = lib.uniqueWords('aaa bbb ccc ', 'aaa   xxx yyy')
+	t.is(r, 'aaa bbb ccc xxx yyy')
+})

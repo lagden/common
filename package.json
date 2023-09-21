@@ -1,6 +1,6 @@
 {
   "name": "@tadashi/common",
-  "version": "4.0.1",
+  "version": "4.1.0",
   "description": "Common functions",
   "type": "module",
   "main": "./src/common.js",
@@ -35,9 +35,9 @@
   "devDependencies": {
     "ava": "5.3.1",
     "c8": "8.0.1",
-    "eslint": "8.48.0",
+    "eslint": "8.49.0",
     "eslint-plugin-unicorn": "48.0.1",
     "jsdom": "22.1.0",
-    "sinon": "15.2.0"
+    "sinon": "16.0.0"
   }
 }

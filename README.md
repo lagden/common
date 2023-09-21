@@ -213,6 +213,11 @@ Preenche o template definido
 Gerador de ID aleatório
 
 
+> `uniqueWords(...args: string[]): string`
+
+Retorna uma string contendo palavras exclusivas dos argumentos fornecidos
+
+
 ---
 
 
