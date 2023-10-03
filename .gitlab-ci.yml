@@ -1,10 +1,94 @@
-image: node:latest
+include:
+  - project: "inovacao/devops/template-cicd"
+    file: "sonar-js.yaml"
+
+test:
+  image: node:latest
+  stage: test
+  before_script:
+    - npm i -g pnpm
+  script:
+    - pnpm install --no-frozen-lockfile
+    - npm test
+  coverage: '/Statements\s*:\s*([^%]+)/'
+  artifacts:
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage/cobertura-coverage.xml
+
+sonar:
+  extends: .sonar_js
+  variables:
+    SONAR_SOURCE: "src"
+
+publish:
+  stage: release
+  image: node:latest
+  variables:
+    VERSION_PKG: ${CI_COMMIT_TAG}
+    NAME_PKG: ${CI_PROJECT_NAME}
+    SCOPE_PKG: "@${CI_PROJECT_ROOT_NAMESPACE}"
+  before_script:
+    - npm config set ${SCOPE_PKG}:registry=${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/npm/
+    - npm config set //${CI_SERVER_HOST}/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN}
+    - npm i -g json
+  script:
+    - json -I -f package.json -e "this.name='${SCOPE_PKG}/${NAME_PKG}'"
+    - json -I -f package.json -e "this.version='${VERSION_PKG}'"
+    - cat package.json
+    - cat ~/.npmrc
+    - npm publish --verbose
+  rules:
+    - if: $CI_COMMIT_TAG
+
+copy:
+  stage: copy
+  image: docker:24.0.5
+  services:
+    - docker:24.0.5-dind
+  variables:
+    DOCKER_HOST: tcp://docker:2376
+    DOCKER_TLS_CERTDIR: "/certs"
+    DOCKER_TLS_VERIFY: 1
+    DOCKER_CERT_PATH: "$DOCKER_TLS_CERTDIR/client"
+    VERSION_PKG: ${CI_COMMIT_TAG}
+    NAME_PKG: ${CI_PROJECT_NAME}
+    SCOPE_PKG: "@${CI_PROJECT_ROOT_NAMESPACE}"
+  before_script:
+    - bin/helper/wait docker:2376
+    - apk add --no-cache --update bash curl tar gzip
+    - |
+      bash -c "cat <<EOF > rclone.conf
+      [tex]
+      type = sftp
+      host = sftp.textecnologia.com.br
+      user = gitlab
+      pass = ${SFTP_PASS}
+      shell_type = unix
+      md5sum_command = none
+      sha1sum_command = none
+      EOF"
+  script:
+    - mkdir -p npm/${SCOPE_PKG}/${NAME_PKG}
+    - mkdir _draft
+    - cd _draft
+    - curl -L "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/npm/${SCOPE_PKG}/${NAME_PKG}/-/${SCOPE_PKG}/${NAME_PKG}-${VERSION_PKG}.tgz?private_token=${NPM_GROUP_TOKEN}" | tar xvz
+    - mv package ../npm/${SCOPE_PKG}/${NAME_PKG}/${VERSION_PKG}
+    - cd ..
+    - cat rclone.conf
+    - |
+      docker run --rm \
+        -v .:/config/rclone \
+        -v .:/data \
+        -w /data \
+        --user $(id -u):$(id -g) \
+        rclone/rclone:1 copyto npm tex:/npm -c
+  rules:
+    - if: $CI_COMMIT_TAG
 
 stages:
-  - deploy
-
-deploy:
-  stage: deploy
-  script:
-    - echo "https://${CI_SERVER_HOST}/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN}">.npmrc
-    - npm publish
+  - test
+  - sonar
+  - release
+  - copy

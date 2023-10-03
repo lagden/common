@@ -1,22 +1,7 @@
 # Common
 
-[![NPM version][npm-img]][npm]
-[![Build Status][ci-img]][ci]
-[![Coverage Status][coveralls-img]][coveralls]
-
-
-[npm-img]:         https://img.shields.io/npm/v/@tadashi/common.svg
-[npm]:             https://www.npmjs.com/package/@tadashi/common
-[ci-img]:          https://github.com/lagden/common/actions/workflows/nodejs.yml/badge.svg
-[ci]:              https://github.com/lagden/common/actions/workflows/nodejs.yml
-[coveralls-img]:   https://coveralls.io/repos/github/lagden/common/badge.svg?branch=main
-[coveralls]:       https://coveralls.io/github/lagden/common?branch=main
-
-
----
-
-
 Common functions
+
 
 ## Instalação
 

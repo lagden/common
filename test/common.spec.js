@@ -51,7 +51,7 @@ test.before(() => {
 		return lib.uuid()
 	}
 	globalThis.cancelAnimationFrame = lib.noop
-	globalThis.crypto = crypto
+	// globalThis.crypto = crypto
 
 	const dom = new JSDOM('<div id=xxx data-one=foo data-two=bar />')
 	globalThis.document = dom.window.document
@@ -254,7 +254,7 @@ test('template no data', t => {
 test('uuid / rnd', t => {
 	lib.rnd()
 	lib.uuid(false)
-	globalThis.crypto = undefined
+	// globalThis.crypto = undefined
 	lib.uuid()
 	t.pass('uuid')
 })
@@ -273,16 +273,23 @@ test('findRecursive', t => {
 			],
 		}, {
 			bar: 'baz',
-		}, {
+		},
+		{
 			xxx: ['a', 'b', 'c'],
 		},
 	]
+
 	const a = lib.findRecursive(collection, 'id', 2)
 	const b = lib.findRecursive('test', 'id', 2)
-	const c = lib.findRecursive(collection.xxx, 'id', 2)
+	const c = lib.findRecursive(collection, 'xxx', 'b')
+	const d = lib.findRecursive(collection, 'bar', 'baz')
+	const e = lib.findRecursive(undefined, 'id', 0)
+
 	t.is(a.name, 'b')
 	t.is(b, undefined)
-	t.is(c, undefined)
+	t.is(c.xxx[0], 'a')
+	t.is(d.bar, 'baz')
+	t.is(e, undefined)
 })
 
 test('form2qs', t => {

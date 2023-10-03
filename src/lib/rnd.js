@@ -8,5 +8,6 @@ export function rnd(removeDash = true) {
 		const _uuid = globalThis.crypto.randomUUID()
 		return removeDash ? _uuid.replaceAll('-', '') : _uuid
 	}
+	/* c8 ignore next */
 	return Number(Math.random()).toString(16).slice(2, 8) + Date.now().toString(16)
 }

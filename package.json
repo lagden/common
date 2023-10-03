@@ -17,11 +17,6 @@
     "LICENSE",
     "README.md"
   ],
-  "scripts": {
-    "eslint": "eslint --ignore-path .gitignore .",
-    "pretest": "npm run eslint",
-    "test": "c8 --reporter=text --reporter=lcov ava"
-  },
   "keywords": [
     "common",
     "functions",
@@ -32,10 +27,15 @@
   "engines": {
     "node": ">=16"
   },
+  "scripts": {
+    "eslint": "eslint --ignore-path .gitignore .",
+    "pretest": "npm run eslint",
+    "test": "c8 --reporter=text --reporter=text-summary --reporter=lcovonly --reporter=cobertura ava"
+  },
   "devDependencies": {
     "ava": "5.3.1",
     "c8": "8.0.1",
-    "eslint": "8.49.0",
+    "eslint": "8.50.0",
     "eslint-plugin-unicorn": "48.0.1",
     "jsdom": "22.1.0",
     "sinon": "16.0.0"
