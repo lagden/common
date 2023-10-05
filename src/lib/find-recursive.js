@@ -26,7 +26,6 @@ export function findRecursive(collection, key, value) {
 function findInObject(...args) {
 	const [obj, key, value] = args
 	for (const [k, v] of Object.entries(obj)) {
-		console.log({k, key, v, value})
 		if (k === key && (v === value || (Array.isArray(v) && v.includes(value)))) {
 			return obj
 		}
