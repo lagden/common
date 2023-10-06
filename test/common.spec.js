@@ -125,8 +125,7 @@ test('parseBoolean', t => {
 	t.false(lib.parseBoolean('false'))
 	t.true(lib.parseBoolean(true))
 	t.false(lib.parseBoolean(false))
-	t.true(lib.parseBoolean('foo'))
-	t.is(lib.parseBoolean('foo', false), 'foo')
+	t.false(lib.parseBoolean('foo'))
 })
 
 test('parses', t => {

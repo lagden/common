@@ -1,17 +1,13 @@
 /**
- * Converte o valor para boolean
- * @param {*} v - Valor que será convertido para boolean
- * @param {boolean} force - Força a conversão
- * @return {(boolean|any)} Se sucesso retorna o boolean
+ * Parses a value into a boolean.
+ *
+ * @param {*} v - The value to be parsed into a boolean.
+ * @returns {boolean} A boolean representation of the input value.
  */
-export function parseBoolean(v, force = true) {
+export function parseBoolean(v) {
 	if (typeof v === 'boolean') {
 		return v
 	}
-	const _v = String(v)
-	const boolRegex = /^(?:true|false|1|0)$/i
-	if (boolRegex.test(_v)) {
-		return _v.toLowerCase() === 'true' || _v === '1'
-	}
-	return force ? Boolean(v) : v
+	const _v = String(v).toLowerCase()
+	return _v === 'true' || _v === '1'
 }
