@@ -1,5 +1,5 @@
 {
-  "name": "@tadashi/common",
+  "name": "@xet/common",
   "version": "4.2.1",
   "description": "Common functions",
   "type": "module",
