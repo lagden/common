@@ -12,6 +12,7 @@ import {flattenObject} from './flatten-object.js'
  * @returns {string} A string de modelo com as variáveis substituídas por seus valores.
  */
 export function template(templateString, templateVariables, options) {
+	// prettier-ignore
 	const {
 		undefinedReplacement = '',
 		useFlat = true,

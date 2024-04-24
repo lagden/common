@@ -1,4 +1,3 @@
-/* eslint-disable unicorn/prefer-number-properties */
 /**
  * Parses a value into a number, or returns the original value if it matches a specific format or cannot be converted.
  *

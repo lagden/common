@@ -1,5 +1,3 @@
-/* eslint-disable unicorn/prefer-query-selector */
-
 /**
  * Converte data-* atributos para objeto
  * @param {string} id - ID do elemento

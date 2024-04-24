@@ -5,6 +5,6 @@
  * @returns {string} A normalized URL string.
  */
 export function getURL(value) {
-	const url = (new URL('./', value).href).slice(0, -1)
+	const url = new URL('./', value).href.slice(0, -1)
 	return url
 }

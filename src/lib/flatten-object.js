@@ -5,6 +5,7 @@
  * @returns {boolean} Retorna true/false
  */
 function _verify(val) {
+	// prettier-ignore
 	const test = [
 		typeof val === 'object',
 		val !== null,

@@ -1,9 +1,9 @@
 /**
- * A function that does nothing and returns `undefined`.
+ * A function that does nothing and returns undefined.
+ * Useful as a placeholder or default value.
  *
- * @param {...*} _args - Any number of arguments (ignored).
- * @returns {undefined} Always returns `undefined`.
+ * @returns {undefined} - Always returns undefined.
  */
-export function noop(..._args) {
+export function noop() {
 	return undefined
 }

@@ -1,4 +1,3 @@
-import crypto from 'node:crypto'
 import test from 'ava'
 import {JSDOM} from 'jsdom'
 import * as sinon from 'sinon'
@@ -170,10 +169,13 @@ test('arr2obj', t => {
 	]
 
 	const result = lib.arr2obj('color', data)
-	t.is(JSON.stringify(result), JSON.stringify({
-		green: {color: 'green', width: '100%'},
-		red: {color: 'red', width: '100%'},
-	}))
+	t.is(
+		JSON.stringify(result),
+		JSON.stringify({
+			green: {color: 'green', width: '100%'},
+			red: {color: 'red', width: '100%'},
+		}),
+	)
 
 	t.is(JSON.stringify(lib.arr2obj('xxx', data)), JSON.stringify({}))
 	t.is(JSON.stringify(lib.arr2obj('color', result)), JSON.stringify(result))
@@ -270,7 +272,8 @@ test('findRecursive', t => {
 					],
 				},
 			],
-		}, {
+		},
+		{
 			bar: 'baz',
 		},
 		{
@@ -300,6 +303,23 @@ test('form2qs', t => {
 	const qs2 = lib.form2qs(formData, false)
 	t.is(qs, 'foo=1&foo=2&bar=3')
 	t.true(qs2 instanceof globalThis.URLSearchParams)
+})
+
+test('getValueFromObject', t => {
+	const obj = {
+		data: {
+			user: {
+				name: 'John',
+			},
+			cars: ['onix', 'civic'],
+		},
+	}
+	const r1 = lib.getValueFromObject(obj, 'data.user.name')
+	const r2 = lib.getValueFromObject(obj, 'data.cars')
+	const r3 = lib.getValueFromObject(obj, 'data.user.age')
+	t.is(r1, 'John')
+	t.is(r2, obj.data.cars)
+	t.is(r3, undefined)
 })
 
 test('removeLink', t => {
