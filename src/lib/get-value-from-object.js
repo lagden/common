@@ -6,23 +6,30 @@
  * @returns {*} - The value found at the specified path, or undefined if not found.
  */
 export function getValueFromObject(obj, path) {
-	// Split the path string into an array of keys.
+	// Split the path string into individual keys
 	const keys = path.split('.')
 
-	// Initialize the value to the root object.
-	let value = obj
+	// Start with the original object
+	let currentObj = obj
 
-	// Iterate through each key in the path array.
+	// Iterate over each key in the path
 	for (const key of keys) {
-		// Access the value corresponding to the current key.
-		value = value[key]
-
-		// If the value is undefined, return undefined.
-		if (value === undefined) {
+		// If the current object is null or undefined, return undefined
+		if ((currentObj ?? false) === false) {
 			return undefined
+		}
+
+		// If the key contains an array accessor, extract the index
+		if (key.includes('[') && key.includes(']')) {
+			const [arrayKey, indexStr] = key.split('[')
+			const index = parseInt(indexStr.replace(']', ''), 10)
+			currentObj = currentObj[arrayKey][index]
+		} else {
+			// Otherwise, just access the property normally
+			currentObj = currentObj[key]
 		}
 	}
 
-	// Return the final value found at the end of the path.
-	return value
+	// Return the final value
+	return currentObj
 }

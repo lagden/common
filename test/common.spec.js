@@ -310,6 +310,16 @@ test('getValueFromObject', t => {
 		data: {
 			user: {
 				name: 'John',
+				phones: [
+					{
+						type: 'a',
+						number: '+551199999',
+					},
+					{
+						type: 'b',
+						number: '+551188888',
+					},
+				],
 			},
 			cars: ['onix', 'civic'],
 		},
@@ -317,9 +327,15 @@ test('getValueFromObject', t => {
 	const r1 = lib.getValueFromObject(obj, 'data.user.name')
 	const r2 = lib.getValueFromObject(obj, 'data.cars')
 	const r3 = lib.getValueFromObject(obj, 'data.user.age')
+	const r4 = lib.getValueFromObject(obj, 'data.cars[1]')
+	const r5 = lib.getValueFromObject(obj, 'data.user.phones[0].type')
+	const r6 = lib.getValue(undefined, 'data.user.phones[0].type')
 	t.is(r1, 'John')
 	t.is(r2, obj.data.cars)
 	t.is(r3, undefined)
+	t.is(r4, 'civic')
+	t.is(r5, 'a')
+	t.is(r6, undefined)
 })
 
 test('removeLink', t => {
