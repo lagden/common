@@ -141,6 +141,10 @@ Tranforma o formulário em query-string
 
 Encontra um valor de um objeto aninhado com base em um determinado caminho
 
+> `isPlainObject(value: *): boolean`
+
+Verifica se um valor é um objeto simples.
+
 > `kebabify(value?: string): string`
 
 Converte camel/snake case para kebab case.
@@ -175,6 +179,10 @@ Gerador de ID aleatório
 Retorna uma string contendo palavras exclusivas dos argumentos fornecidos
 
 ---
+
+## Buy Me a Coffee
+
+BTC: bc1q7famhuj5f25n6qvlm3sssnymk2qpxrfwpyq7g4
 
 ## License
 

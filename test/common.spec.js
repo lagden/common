@@ -338,6 +338,17 @@ test('getValueFromObject', t => {
 	t.is(r6, undefined)
 })
 
+test('isPlainObject', t => {
+	t.true(lib.isPlainObject({}))
+	t.false(lib.isPlainObject([]))
+	t.false(lib.isPlainObject(null))
+	t.false(lib.isPlainObject(7))
+	t.false(lib.isPlainObject('test'))
+	t.false(lib.isPlainObject(undefined))
+	t.false(lib.isPlainObject(new Date()))
+	t.false(lib.isPlainObject(Date))
+})
+
 test('removeLink', t => {
 	const html = 'Clique <a rel="noopenner" target="_blank" href="https://buscacepinter.correios.com.br/app/endereco/index.php">aqui</a>'
 	const v = lib.removeLink(html)
