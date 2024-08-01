@@ -33,7 +33,6 @@ class FormData {
 
 test.before(() => {
 	globalThis.location = new URL('http://127.0.0.1/?test=1')
-	globalThis.structuredClone = obj => JSON.parse(JSON.stringify(obj))
 	globalThis.localStorage = storage()
 	globalThis.sessionStorage = storage()
 	globalThis.document = {
@@ -99,7 +98,12 @@ test('copyObject', t => {
 
 test('clone', t => {
 	const obj = {a: 1, b: 2, c: 3}
+	const sym = {...obj, x: Symbol('xxx')}
+
 	let data
+
+	data = lib.clone(sym)
+	t.not(data, sym)
 
 	data = lib.clone(obj)
 	t.not(data, obj)

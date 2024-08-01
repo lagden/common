@@ -6,8 +6,11 @@ import {copyObject} from './copy-object.js'
  * @return {object} Retorna um novo objeto
  */
 export function clone(obj) {
-	if (typeof globalThis?.structuredClone === 'function') {
-		return globalThis.structuredClone(obj)
+	try {
+		if (typeof globalThis?.structuredClone === 'function') {
+			return globalThis.structuredClone(obj)
+		}
+	} catch {
+		return copyObject(obj)
 	}
-	return copyObject(obj)
 }
