@@ -1,54 +1,48 @@
 {
-  "name": "@tadashi/common",
-  "version": "4.6.0",
-  "description": "Common functions",
-  "type": "module",
-  "main": "./src/common.js",
-  "browser": "./src/common.js",
-  "exports": {
-    ".": {
-      "browser": "./src/common.js",
-      "import": "./src/common.js"
-    },
-    "./src/lib/get-value-from-object.js": {
-      "browser": "./src/lib/get-value-from-object.js",
-      "import": "./src/lib/get-value-from-object.js"
-    },
-    "./package.json": "./package.json"
-  },
-  "files": [
-    "src",
-    "LICENSE",
-    "README.md"
-  ],
-  "keywords": [
-    "common",
-    "functions",
-    "helper"
-  ],
-  "author": "Thiago Lagden",
-  "license": "MIT",
-  "engines": {
-    "node": ">=16"
-  },
-  "scripts": {
-    "eslint": "eslint .",
-    "check": "prettier --check .",
-    "format": "prettier --write .",
-    "pretest": "run-s check eslint",
-    "test": "c8 --reporter=text --reporter=text-summary --reporter=lcovonly --reporter=cobertura ava"
-  },
-  "devDependencies": {
-    "@eslint/eslintrc": "3.1.0",
-    "@eslint/js": "9.8.0",
-    "ava": "6.1.3",
-    "c8": "10.1.2",
-    "eslint": "9.8.0",
-    "eslint-plugin-unicorn": "55.0.0",
-    "globals": "15.9.0",
-    "jsdom": "24.1.1",
-    "npm-run-all": "4.1.5",
-    "prettier": "3.3.3",
-    "sinon": "18.0.0"
-  }
+	"name": "@tadashi/common",
+	"version": "4.7.0",
+	"description": "Common functions",
+	"type": "module",
+	"main": "./src/common.js",
+	"browser": "./src/common.js",
+	"types": "./types/common.d.ts",
+	"exports": {
+		".": {
+			"browser": "./src/common.js",
+			"import": "./src/common.js",
+			"types": "./types/common.d.ts"
+		},
+		"./src/lib/get-value-from-object.js": {
+			"browser": "./src/lib/get-value-from-object.js",
+			"import": "./src/lib/get-value-from-object.js",
+			"types": "./types/lib/get-value-from-object.d.ts"
+		},
+		"./package.json": "./package.json"
+	},
+	"files": [
+		"src",
+		"LICENSE",
+		"README.md"
+	],
+	"keywords": [
+		"common",
+		"functions",
+		"helper"
+	],
+	"author": "Thiago Lagden",
+	"license": "MIT",
+	"engines": {
+		"node": ">=16"
+	},
+	"scripts": {
+		"tsc": "tsc",
+		"test": "c8 --reporter=text --reporter=text-summary --reporter=lcovonly --reporter=cobertura ava"
+	},
+	"devDependencies": {
+		"ava": "6.2.0",
+		"c8": "10.1.3",
+		"jsdom": "25.0.1",
+		"sinon": "19.0.2",
+		"typescript": "5.7.2"
+	}
 }

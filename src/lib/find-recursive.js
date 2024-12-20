@@ -16,12 +16,18 @@ export function findRecursive(collection, key, value) {
 }
 
 /**
- * Recursively searches for a key-value pair within an object.
+ * Encontra um objeto em um objeto aninhado que contém uma chave e um valor específicos.
  *
- * @param {Object} obj - The object to search.
- * @param {*} key - The key to match.
- * @param {*} value - The value to match.
- * @returns {Object|undefined} The object that matches the key-value pair, or undefined if not found.
+ * @param {...(Object|String|*)} args - Os argumentos a serem passados para a função:
+ *   - {Object} obj - O objeto onde a pesquisa será realizada.
+ *   - {String} key - A chave a ser procurada no objeto.
+ *   - {*} value - O valor correspondente à chave a ser procurado. Pode ser um valor simples ou um valor dentro de um array.
+ *
+ * @returns {Object|null} O objeto onde a chave e o valor foram encontrados, ou null se não for encontrado.
+ *
+ * @example
+ * const result = findInObject({ a: { b: [1, 2, 3] } }, 'b', 2);
+ * // result será { b: [1, 2, 3] }
  */
 function findInObject(...args) {
 	const [obj, key, value] = args

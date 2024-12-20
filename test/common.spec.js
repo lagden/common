@@ -1,5 +1,5 @@
 import test from 'ava'
-import {JSDOM} from 'jsdom'
+import { JSDOM } from 'jsdom'
 import * as sinon from 'sinon'
 import * as lib from '../src/common.js'
 
@@ -44,7 +44,7 @@ test.before(() => {
 			},
 		},
 	}
-	globalThis.requestAnimationFrame = fn => {
+	globalThis.requestAnimationFrame = (fn) => {
 		fn()
 		return lib.uuid()
 	}
@@ -57,20 +57,20 @@ test.before(() => {
 	// console.log(dom)
 })
 
-test('filterProps', t => {
-	const data = lib.filterProps({a: 1, b: 2, c: 3}, 'b')
-	t.is(JSON.stringify(data), JSON.stringify({a: 1, c: 3}))
+test('filterProps', (t) => {
+	const data = lib.filterProps({ a: 1, b: 2, c: 3 }, 'b')
+	t.is(JSON.stringify(data), JSON.stringify({ a: 1, c: 3 }))
 
-	const other = lib.filterProps({a: 1, $$: 2, c: 3})
-	t.is(JSON.stringify(other), JSON.stringify({a: 1, c: 3}))
+	const other = lib.filterProps({ a: 1, $$: 2, c: 3 })
+	t.is(JSON.stringify(other), JSON.stringify({ a: 1, c: 3 }))
 })
 
-test('params', t => {
+test('params', (t) => {
 	const data = lib.params()
 	t.is(data.get('test'), '1')
 })
 
-test('qs', t => {
+test('qs', (t) => {
 	const data = lib.qs()
 	t.is(data.test, '1')
 
@@ -78,27 +78,27 @@ test('qs', t => {
 	t.is(data2.foo, 'bar')
 })
 
-test('fullURL', t => {
+test('fullURL', (t) => {
 	let data
-	data = lib.fullURL('http://127.0.0.1/run/', {foo: 'bar'})
+	data = lib.fullURL('http://127.0.0.1/run/', { foo: 'bar' })
 	t.is(data, 'http://127.0.0.1/run/?foo=bar&test=1')
 
 	data = lib.fullURL('http://127.0.0.1/run/', undefined, false)
 	t.is(data, 'http://127.0.0.1/run/')
 
-	data = lib.fullURL('http://127.0.0.1/run/', {foo: 'foo', bar: 'bar'}, true, ['foo'])
+	data = lib.fullURL('http://127.0.0.1/run/', { foo: 'foo', bar: 'bar' }, true, ['foo'])
 	t.is(data, 'http://127.0.0.1/run/?bar=bar&test=1')
 })
 
-test('copyObject', t => {
-	const obj = {a: 1, b: 2, c: undefined}
+test('copyObject', (t) => {
+	const obj = { a: 1, b: 2, c: undefined }
 	const data = lib.copyObject(obj)
 	t.not(data, obj)
 })
 
-test('clone', t => {
-	const obj = {a: 1, b: 2, c: 3}
-	const sym = {...obj, x: Symbol('xxx')}
+test('clone', (t) => {
+	const obj = { a: 1, b: 2, c: 3 }
+	const sym = { ...obj, x: Symbol('xxx') }
 
 	let data
 
@@ -113,7 +113,7 @@ test('clone', t => {
 	t.not(data, obj)
 })
 
-test('parseNumber', t => {
+test('parseNumber', (t) => {
 	t.is(lib.parseNumber('foo'), 'foo')
 	t.is(lib.parseNumber('1'), 1)
 	t.is(lib.parseNumber('1.123'), 1.123)
@@ -121,7 +121,7 @@ test('parseNumber', t => {
 	t.is(lib.parseNumber(1.123), 1.123)
 })
 
-test('parseBoolean', t => {
+test('parseBoolean', (t) => {
 	t.true(lib.parseBoolean('1'))
 	t.false(lib.parseBoolean('0'))
 	t.true(lib.parseBoolean('true'))
@@ -131,17 +131,17 @@ test('parseBoolean', t => {
 	t.false(lib.parseBoolean('foo'))
 })
 
-test('parses', t => {
+test('parses', (t) => {
 	t.is(typeof lib.parses('number'), 'function')
 	t.is(lib.parses('invalid'), undefined)
 })
 
-test('noop', t => {
+test('noop', (t) => {
 	lib.noop()
 	t.pass('noop')
 })
 
-test('checkArray', t => {
+test('checkArray', (t) => {
 	const data = []
 	const other = [1, 2, 3]
 	t.true(lib.checkArray(data))
@@ -149,12 +149,12 @@ test('checkArray', t => {
 	t.true(lib.checkArray(other, false))
 })
 
-test('obj2style', t => {
-	const data = {color: 'green', width: '100%'}
+test('obj2style', (t) => {
+	const data = { color: 'green', width: '100%' }
 	t.is(lib.obj2style(data), 'color: green;width: 100%')
 })
 
-test('storage', t => {
+test('storage', (t) => {
 	lib.setStorage('test', 'foo')
 	lib.setStorage('test', 'bar', 'sessionStorage')
 	t.is(lib.getStorage('test'), 'foo')
@@ -166,18 +166,18 @@ test('storage', t => {
 	t.is(lib.getStorage('test', 'sessionStorage'), undefined)
 })
 
-test('arr2obj', t => {
+test('arr2obj', (t) => {
 	const data = [
-		{color: 'green', width: '100%'},
-		{color: 'red', width: '100%'},
+		{ color: 'green', width: '100%' },
+		{ color: 'red', width: '100%' },
 	]
 
 	const result = lib.arr2obj('color', data)
 	t.is(
 		JSON.stringify(result),
 		JSON.stringify({
-			green: {color: 'green', width: '100%'},
-			red: {color: 'red', width: '100%'},
+			green: { color: 'green', width: '100%' },
+			red: { color: 'red', width: '100%' },
 		}),
 	)
 
@@ -185,7 +185,7 @@ test('arr2obj', t => {
 	t.is(JSON.stringify(lib.arr2obj('color', result)), JSON.stringify(result))
 })
 
-test('setCssVars', t => {
+test('setCssVars', (t) => {
 	const data = {
 		'--color': 'green',
 		'--width': '100%',
@@ -195,16 +195,16 @@ test('setCssVars', t => {
 	t.pass('setCssVars')
 })
 
-test('template', t => {
+test('template', (t) => {
 	const templateString = 'My name is ${"user.fullname"}.'
-	const templateVariables = {'user.fullname': 'Teste'}
+	const templateVariables = { 'user.fullname': 'Teste' }
 	const result = lib.template(templateString, templateVariables)
 	t.is(result, 'My name is Teste.')
 })
 
-test('template options', t => {
+test('template options', (t) => {
 	const templateString = 'My name is ${"user.fullname"} and I like to eat ${"food"} with water'
-	const templateVariables = {'user.fullname': 'Teste'}
+	const templateVariables = { 'user.fullname': 'Teste' }
 	const options = {
 		undefinedReplacement: '__________',
 		useFlat: false,
@@ -213,7 +213,7 @@ test('template options', t => {
 	t.is(result, 'My name is Teste and I like to eat __________ with water')
 })
 
-test('template obj', t => {
+test('template obj', (t) => {
 	const templateString = 'My name is ${"user.fullname"} and I like to eat ${"food"} with water'
 	const templateVariables = {
 		user: {
@@ -227,7 +227,7 @@ test('template obj', t => {
 	t.is(result, 'My name is Teste and I like to eat __________ with water')
 })
 
-test('template regex', t => {
+test('template regex', (t) => {
 	const templateString = 'My name is ${user.fullname} and I like to eat ${food} with water'
 	const templateVariables = {
 		food: 'pasta',
@@ -242,7 +242,7 @@ test('template regex', t => {
 	t.is(result, 'My name is Teste and I like to eat pasta with water')
 })
 
-test('template no data', t => {
+test('template no data', (t) => {
 	const templateString = undefined
 	const templateVariables = {
 		user: {
@@ -256,7 +256,7 @@ test('template no data', t => {
 	t.is(result, '')
 })
 
-test('uuid / rnd', t => {
+test('uuid / rnd', (t) => {
 	lib.rnd()
 	lib.uuid(false)
 	// globalThis.crypto = undefined
@@ -264,15 +264,15 @@ test('uuid / rnd', t => {
 	t.pass('uuid')
 })
 
-test('findRecursive', t => {
+test('findRecursive', (t) => {
 	const collection = [
 		{
 			foo: [
 				{
 					noop: [
-						{id: 1, name: 'a'},
-						{id: 2, name: 'b'},
-						{id: 3, name: 'c'},
+						{ id: 1, name: 'a' },
+						{ id: 2, name: 'b' },
+						{ id: 3, name: 'c' },
 					],
 				},
 			],
@@ -298,7 +298,7 @@ test('findRecursive', t => {
 	t.is(e, undefined)
 })
 
-test('form2qs', t => {
+test('form2qs', (t) => {
 	const formData = new FormData()
 	formData.append('foo', 1)
 	formData.append('foo', 2)
@@ -309,7 +309,7 @@ test('form2qs', t => {
 	t.true(qs2 instanceof globalThis.URLSearchParams)
 })
 
-test('getValueFromObject', t => {
+test('getValueFromObject', (t) => {
 	const obj = {
 		data: {
 			user: {
@@ -342,7 +342,7 @@ test('getValueFromObject', t => {
 	t.is(r6, undefined)
 })
 
-test('isPlainObject', t => {
+test('isPlainObject', (t) => {
 	t.true(lib.isPlainObject({}))
 	t.false(lib.isPlainObject([]))
 	t.false(lib.isPlainObject(null))
@@ -353,13 +353,13 @@ test('isPlainObject', t => {
 	t.false(lib.isPlainObject(Date))
 })
 
-test('removeLink', t => {
+test('removeLink', (t) => {
 	const html = 'Clique <a rel="noopenner" target="_blank" href="https://buscacepinter.correios.com.br/app/endereco/index.php">aqui</a>'
 	const v = lib.removeLink(html)
 	t.is(v, 'Clique aqui')
 })
 
-test('debounce', t => {
+test('debounce', (t) => {
 	const clock = sinon.useFakeTimers()
 	const stub = sinon.stub()
 	const fn = lib.debounce(stub, 1000)
@@ -374,12 +374,12 @@ test('debounce', t => {
 	t.true(stub.calledOnce)
 })
 
-test('getUrl', t => {
+test('getUrl', (t) => {
 	const url = lib.getUrl('https://eu.com.vc/xxx/lib.js')
 	t.is(url, 'https://eu.com.vc/xxx')
 })
 
-test('kebabify', t => {
+test('kebabify', (t) => {
 	const v1 = lib.kebabify('AbcDefG')
 	const v2 = lib.kebabify('abcDefG')
 	const v3 = lib.kebabify('-abc-DefG')
@@ -390,17 +390,17 @@ test('kebabify', t => {
 	t.is(v4, 'abc-def-g')
 })
 
-test('getProp', t => {
+test('getProp', (t) => {
 	const id = lib.getProp('https://eu.com.vc/lib.js?id=xxx', 'id')
 	t.is(id, 'xxx')
 })
 
-test('getData', t => {
+test('getData', (t) => {
 	const data = lib.getData('xxx')
-	t.deepEqual(data, {one: 'foo', two: 'bar'})
+	t.deepEqual(data, { one: 'foo', two: 'bar' })
 })
 
-test('createElement', t => {
+test('createElement', (t) => {
 	const element = lib.createElement('div', {
 		dataset: {
 			test: 'test',
@@ -411,7 +411,7 @@ test('createElement', t => {
 	t.is(element.id, 'divTest')
 })
 
-test('flatter object', t => {
+test('flatter object', (t) => {
 	const flat = lib.flattenObject({
 		a: {
 			b: {
@@ -421,15 +421,15 @@ test('flatter object', t => {
 			d: 'bar',
 		},
 	})
-	t.deepEqual(flat, {'a.b.c': 'foo', 'a.x': undefined, 'a.d': 'bar'})
+	t.deepEqual(flat, { 'a.b.c': 'foo', 'a.x': undefined, 'a.d': 'bar' })
 })
 
-test('uniqueWords', t => {
+test('uniqueWords', (t) => {
 	const r = lib.uniqueWords('aaa bbb ccc ', 'aaa   xxx yyy')
 	t.is(r, 'aaa bbb ccc xxx yyy')
 })
 
-test('uniqueWords only string', t => {
+test('uniqueWords only string', (t) => {
 	const r = lib.uniqueWords(undefined, 'aaa   xxx yyy', [], {}, 123, true)
 	t.is(r, 'aaa xxx yyy')
 })

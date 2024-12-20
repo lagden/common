@@ -1,5 +1,5 @@
-import {parseBoolean} from './boolean.js'
-import {parseNumber} from './number.js'
+import { parseBoolean } from './boolean.js'
+import { parseNumber } from './number.js'
 
 /**
  * Seleciona um parser

@@ -8,6 +8,6 @@ export function filterProps(props, reserved) {
 	const _reserved = new Set(reserved ?? [])
 	return Object.keys(props).reduce((acc, cur) => {
 		const isTrue = cur.includes('$$') || cur.includes('Class') || _reserved.has(cur)
-		return isTrue ? acc : {...acc, [cur]: props[cur]}
+		return isTrue ? acc : { ...acc, [cur]: props[cur] }
 	}, {})
 }

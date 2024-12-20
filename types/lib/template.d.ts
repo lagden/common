@@ -1,5 +1,3 @@
-import { flattenObject } from './flatten-object.js'
-
 /**
  * Substitui variáveis em uma string de modelo por seus valores correspondentes.
  *
@@ -11,24 +9,8 @@ import { flattenObject } from './flatten-object.js'
  * @param {RegExp} [options.regex=/\${"([^"]*?)"}/gm] - Expressão regular para corresponder às variáveis no modelo.
  * @returns {string} A string de modelo com as variáveis substituídas por seus valores.
  */
-export function template(templateString, templateVariables, options) {
-	// prettier-ignore
-	const {
-		undefinedReplacement = '',
-		useFlat = true,
-		regex = /\${"([^"]*?)"}/gm,
-	} = options ?? {}
-
-	const _ref = useFlat ? flattenObject(templateVariables) : templateVariables
-
-	/**
-	 * Função de substituição para usar com o método `replace`.
-	 *
-	 * @param {string} _ - A correspondência completa da expressão regular.
-	 * @param {string} g - O grupo de captura da expressão regular, contendo o nome da variável.
-	 * @returns {string} O valor correspondente da variável ou o valor de substituição indefinido.
-	 */
-	const replacementFunction = (_, g) => _ref?.[g] ?? undefinedReplacement
-
-	return String(templateString ?? '').replace(regex, replacementFunction)
-}
+export function template(templateString: string, templateVariables: object, options?: {
+    undefinedReplacement?: string;
+    useFlat?: boolean;
+    regex?: RegExp;
+}): string;

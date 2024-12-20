@@ -14,14 +14,4 @@
  * const queryString = form2qs(formData);
  * // queryString será 'name=John+Doe&age=30'
  */
-export function form2qs(formData, toString = true) {
-	const searchParams = new URLSearchParams()
-	for (const [k, v] of formData.entries()) {
-		if (v instanceof File) {
-			searchParams.append(k, v.name)
-		} else {
-			searchParams.append(k, v)
-		}
-	}
-	return toString ? searchParams.toString() : searchParams
-}
+export function form2qs(formData: FormData, toString?: boolean): string | URLSearchParams;

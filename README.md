@@ -13,7 +13,7 @@ $ npm i -S @tadashi/common
 Exemplo um:
 
 ```js
-import {checkArray} from '@tadashi/common'
+import { checkArray } from '@tadashi/common'
 
 const isArray = checkArray([1, 2, 3])
 // => true
@@ -22,7 +22,7 @@ const isArray = checkArray([1, 2, 3])
 Exemplo dois:
 
 ```js
-import {checkArray} from '@tadashi/common/src/lib/check-array.js'
+import { checkArray } from '@tadashi/common/src/lib/check-array.js'
 
 const isArray = checkArray([1, 2, 3])
 // => true
@@ -31,7 +31,7 @@ const isArray = checkArray([1, 2, 3])
 Exemplo três:
 
 ```js
-import {checkArray} from 'https://unpkg.com/@tadashi/common@{version}/src/lib/check-array.js'
+import { checkArray } from 'https://unpkg.com/@tadashi/common@{version}/src/lib/check-array.js'
 
 const isArray = checkArray([1, 2, 3])
 // => true
@@ -169,7 +169,7 @@ Define css vars no root
 
 Preenche o template definido
 
-> `rnd(removeDash?: boolean): string`  
+> `rnd(removeDash?: boolean): string`\
 > Alias `uuid`
 
 Gerador de ID aleatório

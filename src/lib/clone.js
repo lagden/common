@@ -1,4 +1,4 @@
-import {copyObject} from './copy-object.js'
+import { copyObject } from './copy-object.js'
 
 /**
  * Clona um objeto evitando referência - Ponyfill
