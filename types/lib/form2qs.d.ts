@@ -1,17 +1,26 @@
 /**
- * Converte um objeto FormData em uma string de parâmetros de consulta ou um URLSearchParams.
+ * Converts FormData to a query string or URLSearchParams object.
  *
- * @param {FormData} formData - O objeto FormData a ser convertido.
- * @param {boolean} [toString=true] - Um indicador se o resultado deve ser retornado como uma string de parâmetros de consulta.
- *                                       Se `false`, retorna um objeto URLSearchParams.
- *
- * @returns {string|URLSearchParams} Uma string de parâmetros de consulta, se toString for verdadeiro; caso contrário, um objeto URLSearchParams.
+ * @param {FormData} formData - The FormData object to convert.
+ * @param {boolean} [toString=true] - A flag to specify whether to return the result as a query string.
+ * @returns {string|URLSearchParams} - Returns a query string or URLSearchParams object depending on the `toString` flag.
  *
  * @example
+ * // Returns 'key1=value1&key2=value2' as a query string
  * const formData = new FormData();
- * formData.append('name', 'John Doe');
- * formData.append('age', '30');
- * const queryString = form2qs(formData);
- * // queryString será 'name=John+Doe&age=30'
+ * formData.append('key1', 'value1');
+ * formData.append('key2', 'value2');
+ * form2qs(formData);
+ *
+ * @example
+ * // Returns URLSearchParams object
+ * form2qs(formData, false);
+ *
+ * @example
+ * // Returns 'fileInput=file.txt' when including File objects
+ * const formDataWithFile = new FormData();
+ * const file = new File(["content"], "file.txt");
+ * formDataWithFile.append('fileInput', file);
+ * form2qs(formDataWithFile);
  */
 export function form2qs(formData: FormData, toString?: boolean): string | URLSearchParams;

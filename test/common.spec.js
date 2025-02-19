@@ -17,20 +17,6 @@ function storage() {
 	}
 }
 
-class FormData {
-	constructor() {
-		this.data = new Set()
-	}
-
-	append(k, v) {
-		this.data.add([k, v])
-	}
-
-	entries() {
-		return [...this.data]
-	}
-}
-
 test.before(() => {
 	globalThis.location = new URL('http://127.0.0.1/?test=1')
 	globalThis.localStorage = storage()
@@ -299,13 +285,18 @@ test('findRecursive', (t) => {
 })
 
 test('form2qs', (t) => {
+	const obj = { hello: 'world' }
+	const blob = new Blob([JSON.stringify(obj, null, 2)], {
+		type: 'application/json',
+	})
 	const formData = new FormData()
 	formData.append('foo', 1)
 	formData.append('foo', 2)
 	formData.append('bar', 3)
+	formData.append('pic', blob, 'test.jpg')
 	const qs = lib.form2qs(formData)
 	const qs2 = lib.form2qs(formData, false)
-	t.is(qs, 'foo=1&foo=2&bar=3')
+	t.is(qs, 'foo=1&foo=2&bar=3&pic=test.jpg')
 	t.true(qs2 instanceof globalThis.URLSearchParams)
 })
 
