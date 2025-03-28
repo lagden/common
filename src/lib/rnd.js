@@ -15,6 +15,6 @@ export function rnd() {
  */
 export function uuid(removeDash = true) {
 	/* c8 ignore next */
-	const _uuid = globalThis?.crypto?.randomUUID() ?? rnd()
+	const _uuid = globalThis?.crypto?.randomUUID?.() ?? rnd()
 	return removeDash ? _uuid.replaceAll('-', '') : _uuid
 }
